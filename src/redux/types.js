@@ -11,3 +11,12 @@ export const LOADING_UI = 'LOADING_UI';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 /** DATA REDUCER TYPES */
+export const SET_SPORE = 'SET_SPORE'
+export const SET_SPORES = 'SET_SPORES'
+export const LOADING_DATA = 'LOADING_DATA'
+export const LIKE_SPORE = 'LIKE_SPORE'
+export const UNLIKE_SPORE = 'UNLIKE_SPORE'
+export const DELETE_SPORE = 'DELETE_SPORE'
+export const POST_SPORE = 'POST_SPORE';
+export const STOP_LOADING_UI = 'STOP_LOADING_UI';
+export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';

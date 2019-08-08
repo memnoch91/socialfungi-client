@@ -1,16 +1,15 @@
 import axios from 'axios';
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED } from  '../types';
+import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, LOADING_USER } from '../types';
 
 
 export const loginUser = (userData, history) => (dispatch) => {
-    dispatch({type: LOADING_UI});
+    dispatch({ type: LOADING_UI });
     axios
         .post('/login', userData)
         .then(res => {
-            console.log(res)
             setAuthorizationHeader(res.data.token)
             dispatch(getUserData());
-            dispatch({type: CLEAR_ERRORS});
+            dispatch({ type: CLEAR_ERRORS });
             history.push('/');
         })
         .catch(err => {
@@ -22,13 +21,13 @@ export const loginUser = (userData, history) => (dispatch) => {
         })
 }
 export const signupUser = (newUserData, history) => (dispatch) => {
-    dispatch({type: LOADING_UI});
+    dispatch({ type: LOADING_UI });
     axios
         .post('/signup', newUserData)
         .then(res => {
             setAuthorizationHeader(res.data.token)
             dispatch(getUserData());
-            dispatch({type: CLEAR_ERRORS});
+            dispatch({ type: CLEAR_ERRORS });
             history.push('/');
         })
         .catch(err => {
@@ -46,7 +45,8 @@ export const logoutUser = () => (dispatch) => {
     dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const getUserData = () => (dispatch) =>{
+export const getUserData = () => (dispatch) => {
+    dispatch({ type: LOADING_USER });
     axios.get('/user')
         .then(res => {
             dispatch({
@@ -55,7 +55,28 @@ export const getUserData = () => (dispatch) =>{
             });
         })
         .catch(err => console.error(err));
-}    
+}
+
+export const uploadImage = (formData) => (dispatch) => {
+    dispatch({ type: LOADING_USER });
+    axios
+        .post('/user/image', formData)
+        .then( () => {
+            dispatch(getUserData());
+        })
+        .then(err => console.log(err))
+        .catch(err =>  console.error(err));
+}
+
+export const editUserDetails = (userDetails) => (dispatch) => {
+    dispatch({type: LOADING_USER});
+    axios
+        .post('/user', userDetails)
+        .then(() => {
+            dispatch(getUserData());
+        })
+        .catch(err => console.error(err));
+}
 
 const setAuthorizationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`;
