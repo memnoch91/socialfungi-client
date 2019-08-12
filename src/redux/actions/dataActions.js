@@ -3,6 +3,7 @@ import {
     LOADING_DATA,
     LIKE_SPORE,
     UNLIKE_SPORE,
+    DELETE_SPORE,
     // DELETE_SPORE,
     // SET_ERRORS,
     // POST_SPORE,
@@ -55,4 +56,16 @@ export const unlikeSpore = (sporeId) => (dispatch) => {
             });
         })
         .catch(err => console.error(err));
+}
+
+export const deleteSpore = (sporeId) => (dispatch) => {
+    axios
+        .delete(`spore/${sporeId}`)
+        .then(res => {
+            dispatch({
+                type: DELETE_SPORE,
+                payload: res.data
+            })
+        })
+        .catch(err =>  console.error(err))
 }

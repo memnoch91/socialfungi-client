@@ -3,7 +3,7 @@ import {
     LOADING_DATA,
     LIKE_SPORE,
     UNLIKE_SPORE,
-    // DELETE_SPORE,
+    DELETE_SPORE,
     // POST_SPORE,
     SET_SPORE,
     // SUBMIT_COMMENT
@@ -14,6 +14,8 @@ const initialSate = {
     spore: [],
     loading: false
 }
+
+let index;
 
 export default function (state = initialSate, action) {
     switch (action.type) {
@@ -36,7 +38,7 @@ export default function (state = initialSate, action) {
         case LIKE_SPORE:
         case UNLIKE_SPORE:
 
-            const index = state.spores.findIndex(
+            index = state.spores.findIndex(
                 spore => spore.sporeId === action.payload.sporeId
             );
             state.spores[index] = action.payload;
@@ -46,7 +48,14 @@ export default function (state = initialSate, action) {
             return {
                 ...state
             }
-
+        case DELETE_SPORE:
+            index = state.spores.findIndex(
+                spore => spore.sporeId = action.payload.sporeId
+            )
+            state.spores.splice(index, 1)
+            return {
+                ...state,
+            }
         default:
             return state;
     }

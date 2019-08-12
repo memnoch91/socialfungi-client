@@ -8,8 +8,9 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 //custom components;
-import LikeButton from './LikeButton'
-import CustomButton from './util/CustomButton'
+import LikeButton from './LikeButton';
+import DeleteSpore from './DeleteSpore';
+import CustomButton from './util/CustomButton';
 
 //MUI stuff
 import withStyle from '@material-ui/core/styles/withStyles';
@@ -23,6 +24,7 @@ import ChatIcon from '@material-ui/icons/Chat'
 
 const styles = {
     card: {
+        position: 'relative',
         display: 'flex',
         marginBottom: 20
     },
@@ -48,15 +50,18 @@ function Spore(props) {
             likeCount,
             commentCount
         },
-        // user: {
-        //     authenticated,
-        //     credentials:
-        //     {
-        //         handle
-        //     }
-        // }
+        user: {
+            authenticated,
+            credentials:
+            {
+                handle
+            }
+        }
     } = props;
     //poreId, likeCount, commentCount
+
+    const deleteSpore = (authenticated && userHandle === handle) ? (<DeleteSpore sporeId={sporeId} />) :  null
+
     return (
         <Card className={classes.card}>
             <CardMedia
@@ -71,6 +76,7 @@ function Spore(props) {
                     component={Link}
                     to={`/users/${userHandle}`}
                 >{userHandle}</Typography>
+                {deleteSpore}
                 <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                 <Typography variant="body1" color="textPrimary">{body}</Typography>
                 <LikeButton sporeId={sporeId}></LikeButton>

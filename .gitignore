@@ -6,6 +6,7 @@
 /_CLONE
 /src/assets
 .pnp.j
+/src/assets
 
 # testing
 /coverage
