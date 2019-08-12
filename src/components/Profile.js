@@ -6,7 +6,6 @@ import dayjs from 'dayjs'
 //Custom components
 import EditDetails from './EditDetails';
 
-
 //MUI
 import withStyles from '@material-ui/core/styles/withStyles';
 import profileStyleObject from '../styles/profileStyleObject';
@@ -29,8 +28,6 @@ import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
 
 const styles = profileStyleObject;
-
-
 
 class Profile extends Component {
     constructor(props) {

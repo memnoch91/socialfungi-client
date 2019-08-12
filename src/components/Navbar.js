@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types'
 
-import CustomButton from './CustomButton';
+import CustomButton from './util/CustomButton';
 
 //Redux
 import { connect } from 'react-redux'
@@ -19,7 +19,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 
 export class Navbar extends Component {
     static propTypes = {
-        prop: propTypes,
         authenticated: propTypes.bool,
     }
 

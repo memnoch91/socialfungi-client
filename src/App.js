@@ -11,7 +11,7 @@ import { logoutUser, getUserData }  from './redux/actions/userActions'
 
 
 //components
-import AuthRoute from './components/AuthRoute'
+import AuthRoute from './components/util/AuthRoute'
 import Home from './pages/Home'
 import Signup from './pages/Signup'
 import Login from './pages/Login'

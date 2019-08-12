@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import propTypes from 'prop-types'
 
+//custom components
+import CustomButton from './util/CustomButton'
+
 //Redux
 import { connect } from 'react-redux'
 import { editUserDetails } from '../redux/actions/userActions'
@@ -15,8 +18,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
 
 // Icons
 import EditIcon from '@material-ui/icons/Edit';
@@ -26,7 +27,6 @@ const styles = predefinedStyles;
 
 export class EditDetails extends Component {
     static propTypes = {
-        prop: propTypes,
         editUserDetails: propTypes.func.isRequired,
     }
 
@@ -87,11 +87,9 @@ export class EditDetails extends Component {
     render() {
         return (
             <Fragment>
-                <Tooltip title='Edit User details'>
-                    <IconButton>
-                        <EditIcon fontSize='small' color='secondary' onClick={this.handleOpen} />
-                    </IconButton>
-                </Tooltip>
+                <CustomButton toolTipTitle={'Edit User details'} clickFunction={this.handleOpen}>
+                    <EditIcon fontSize='small' color='secondary' />
+                </CustomButton>
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}

@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 /_CLONE
+/src/assets
 .pnp.j
 
 # testing

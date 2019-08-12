@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+
 //other libs
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+
+//custom components;
+import LikeButton from './LikeButton'
+import CustomButton from './util/CustomButton'
 
 //MUI stuff
 import withStyle from '@material-ui/core/styles/withStyles';
@@ -11,6 +17,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+//MUI icons
+import ChatIcon from '@material-ui/icons/Chat'
 
 
 const styles = {
@@ -30,7 +38,24 @@ const styles = {
 function Spore(props) {
     dayjs.extend(relativeTime);
     const { classes } = props;
-    const { spore: { body, createdAt, userImage, userHandle } } = props;
+    const {
+        spore: {
+            body,
+            createdAt,
+            userImage,
+            userHandle,
+            sporeId,
+            likeCount,
+            commentCount
+        },
+        // user: {
+        //     authenticated,
+        //     credentials:
+        //     {
+        //         handle
+        //     }
+        // }
+    } = props;
     //poreId, likeCount, commentCount
     return (
         <Card className={classes.card}>
@@ -48,9 +73,19 @@ function Spore(props) {
                 >{userHandle}</Typography>
                 <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                 <Typography variant="body1" color="textPrimary">{body}</Typography>
+                <LikeButton sporeId={sporeId}></LikeButton>
+                <span>{likeCount} Likes</span>
+                <CustomButton toolTipTitle='comments'>
+                    <ChatIcon color='primary' />
+                </CustomButton>
+                <span>{commentCount}</span>
             </CardContent>
         </Card>
     )
 }
 
-export default withStyle(styles)(Spore)
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+export default connect(mapStateToProps)(withStyle(styles)(Spore))
