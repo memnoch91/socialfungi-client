@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 
 //assests
 import icon from '../images/fungi.png';
-import loginAndSignupStyles from '../styles/loginAndSignup'
+import loginAndSignupStyles from '../styles/loginAndSignupStyleObject'
 
 //MUI
 import Grid from '@material-ui/core/Grid';

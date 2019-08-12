@@ -11,7 +11,7 @@ import { logoutUser, getUserData }  from './redux/actions/userActions'
 
 
 //components
-import AuthRoute from './components/AuthRoute'
+import AuthRoute from './components/util/AuthRoute'
 import Home from './pages/Home'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
@@ -29,7 +29,7 @@ const sfTheme = createMuiTheme(theme);
 
 // axios.defaults.baseURL = 'https://us-central1-socialfungi.cloudfunctions.net/api'
 
-const token = localStorage.FBIdToken;
+const token = localStorage['FBIdToken'];
 
 if (token) {
   const decodedToken = jwtDecode(token);
@@ -38,7 +38,7 @@ if (token) {
     window.location.href = '/login';
   } else {
     store.dispatch({type: SET_AUTHENTICATED});
-    axios.defaults.headers.component['Authorization'] = token;
+    axios.defaults.headers.common['Authorization'] = token;
     store.dispatch(getUserData())
   }
 }

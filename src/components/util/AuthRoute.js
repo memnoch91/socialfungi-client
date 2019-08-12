@@ -17,7 +17,7 @@ const AuthRoute = ({ component: Component, authenticated, ...rest }) => {
 }
 
 AuthRoute.propTypes = {
-    user: propTypes.object.isRequired
+    user: propTypes.object
 }
 
 const mapStateToProps = (state) =>( {

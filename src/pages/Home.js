@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
+//Redux
+import { connect } from 'react-redux';
+import { getSpores } from '../redux/actions/dataActions'
 
 import Grid from '@material-ui/core/Grid/Grid'
+
+//Local Components
 import Spore from '../components/Spore';
+import Profile from '../components/Profile';
 
 export class Home extends Component {
-
-    state = {
-        spores: null
-    }
-
     componentDidMount() {
-        axios.get('/spores')
-            .then(res => {
-                console.log("15 Home",res);
-                this.setState({
-                    spores: res.data
-                })
-            })
-            .catch(err=> console.error(err))
+        this.props.getSpores()
     }
 
     render() {
-        const sopresMarkup = this.state.spores ? this.state.spores.map( spore =>  <Spore key={spore.sporeId} spore={spore} />) :  (<p>loading...</p>)
+        const { spores, loading } = this.props.data
+        const sopresMarkup = !loading ? spores.map( spore =>  <Spore key={spore.sporeId} spore={spore} />) :  (<p>loading...</p>)
             
         return (
             <Grid container spacing={10}>
@@ -30,11 +25,17 @@ export class Home extends Component {
                    {sopresMarkup}
                 </Grid>
                 <Grid item sm={4} xs={12}>
-                    <p>Profile</p>
+                    <Profile />
                 </Grid>
             </Grid>
         )
     }
 }
 
-export default Home
+const mapStateToProps = state => ({
+    data: state.data
+});
+
+
+
+export default connect(mapStateToProps, {  getSpores } )(Home);

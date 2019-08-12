@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 
 //assests
 import icon from '../images/fungi.png';
-import loginAndSignupStyles from '../styles/loginAndSignup';
+import loginAndSignupStyles from '../styles/loginAndSignupStyleObject';
 
 //MUI
 import Grid from '@material-ui/core/Grid';
@@ -168,7 +168,7 @@ export class Signup extends Component {
 
 Signup.propTypes = {
     signupUser: propTypes.func.isRequired,
-    logoutUser: propTypes.func.isRequired,
+    logoutUser: propTypes.func,
     classes: propTypes.object.isRequired,
     user: propTypes.object.isRequired,
     ui: propTypes.object.isRequired,
