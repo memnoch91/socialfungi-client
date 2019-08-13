@@ -10,9 +10,8 @@ import {
     SET_ERRORS,
     // POST_SPORE,
     CLEAR_ERRORS,
-    // LOADING_UI,
-    // SET_SPORE,
-    // STOP_LOADING_UI,
+    SET_SPORE,
+    STOP_LOADING_UI,
     // SUBMIT_COMMENT,
 } from '../types';
 
@@ -21,6 +20,25 @@ import axios from 'axios';
 export const clearErrors = () => (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
 };
+
+export const getSpore = (sporeId) => (dispatch) => {
+    dispatch({ type: LOADING_UI });
+    axios
+        .get(`/spore/${sporeId}`)
+        .then(res => {
+            dispatch({
+                type: SET_SPORE,
+                payload: res.data
+            });
+        })
+        .then(() => {
+            dispatch({
+                type: STOP_LOADING_UI
+            })
+        })
+        .catch(err => console.error('getSpore', err))
+
+}
 
 //get all spores
 export const getSpores = () => (dispatch) => {

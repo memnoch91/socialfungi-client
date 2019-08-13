@@ -11,7 +11,7 @@ import {
 
 const initialSate = {
     spores: [],
-    spore: [],
+    spore: {},
     loading: false
 }
 
@@ -42,7 +42,6 @@ export default function (state = initialSate, action) {
             }
         case LIKE_SPORE:
         case UNLIKE_SPORE:
-
             index = state.spores.findIndex(
                 spore => spore.sporeId === action.payload.sporeId
             );
@@ -58,7 +57,6 @@ export default function (state = initialSate, action) {
             index = newArray.findIndex(
                 spore => spore.sporeId === action.payload
             )
-            console.log(action.payload)
             newArray.splice(index, 1)
             return {
                 ...state,

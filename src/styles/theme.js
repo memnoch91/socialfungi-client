@@ -1,6 +1,7 @@
 import loginSignUp from './loginAndSignupStyleObject';
-import profileStyles from './profileStyleObject'
-import postSpore from './postSopre'
+import profileStyles from './profileStyleObject';
+import postSpore from './postSopre';
+import sporeDialogStyles from './sporeDialogStyles';
 
 export default {
     palette: {
@@ -29,5 +30,6 @@ export default {
     },
     ...loginSignUp,
     ...profileStyles,
-    ...postSpore
+    ...postSpore,
+    ...sporeDialogStyles
 }

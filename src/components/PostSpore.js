@@ -19,10 +19,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 
-import customStyles from '../styles/theme'
-
-
-
+//custom styles
+import customTheme from '../styles/theme'
 
 export class PostSpore extends Component {
     static propTypes = {
@@ -126,4 +124,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default connect(mapStateToProps, { postSpore, clearErrors })(withStyles(customStyles)(PostSpore));
+export default connect(mapStateToProps, { postSpore, clearErrors })(withStyles(customTheme)(PostSpore));

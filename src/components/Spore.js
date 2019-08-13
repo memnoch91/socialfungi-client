@@ -10,6 +10,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 //custom components;
 import LikeButton from './LikeButton';
 import DeleteSpore from './DeleteSpore';
+import SporeDialog from './SporeDialog';
 import CustomButton from './util/CustomButton';
 
 //MUI stuff
@@ -38,6 +39,7 @@ const styles = {
 }
 
 function Spore(props) {
+
     dayjs.extend(relativeTime);
     const { classes } = props;
     const {
@@ -58,7 +60,6 @@ function Spore(props) {
             }
         }
     } = props;
-    //poreId, likeCount, commentCount
 
     const deleteSpore = (authenticated && userHandle === handle) ? (<DeleteSpore sporeId={sporeId} />) :  null
 
@@ -85,6 +86,10 @@ function Spore(props) {
                     <ChatIcon color='primary' />
                 </CustomButton>
                 <span>{commentCount}</span>
+                <SporeDialog
+                    sporeId={sporeId}
+                    userHandle={userHandle}
+                />
             </CardContent>
         </Card>
     )

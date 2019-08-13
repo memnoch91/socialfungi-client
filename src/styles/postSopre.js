@@ -10,6 +10,6 @@ export default {
     closeButton: {
         position: 'absolute',
         left: '91%',
-        top: '6%'
+        top: '4%'
     }
 }
