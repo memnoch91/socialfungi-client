@@ -1,5 +1,6 @@
 import loginSignUp from './loginAndSignupStyleObject';
 import profileStyles from './profileStyleObject'
+import postSpore from './postSopre'
 
 export default {
     palette: {
@@ -27,5 +28,6 @@ export default {
         useNextVariants: true
     },
     ...loginSignUp,
-    ...profileStyles
+    ...profileStyles,
+    ...postSpore
 }

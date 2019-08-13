@@ -4,17 +4,23 @@ import {
     LIKE_SPORE,
     UNLIKE_SPORE,
     DELETE_SPORE,
+    LOADING_UI,
+    POST_SPORE,
     // DELETE_SPORE,
-    // SET_ERRORS,
+    SET_ERRORS,
     // POST_SPORE,
-    // CLEAR_ERRORS,
+    CLEAR_ERRORS,
     // LOADING_UI,
     // SET_SPORE,
     // STOP_LOADING_UI,
-    // SUBMIT_COMMENT
+    // SUBMIT_COMMENT,
 } from '../types';
 
 import axios from 'axios';
+
+export const clearErrors = () => (dispatch) => {
+    dispatch({ type: CLEAR_ERRORS });
+};
 
 //get all spores
 export const getSpores = () => (dispatch) => {
@@ -64,8 +70,30 @@ export const deleteSpore = (sporeId) => (dispatch) => {
         .then(res => {
             dispatch({
                 type: DELETE_SPORE,
-                payload: res.data
+                payload: sporeId
             })
         })
-        .catch(err =>  console.error(err))
+        .catch(err => console.error(err))
 }
+
+export const postSpore = (newSpore) => (dispatch) => {
+    dispatch({ type: LOADING_UI });
+    axios
+        .post(`/spore`, newSpore)
+        .then(res => {
+            dispatch({
+                type: POST_SPORE,
+                payload: res.data
+            });
+            dispatch(clearErrors())
+        })
+        .catch(err => {
+            dispatch({
+                type: SET_ERRORS,
+                payload: err.response.data
+            })
+        })
+
+}
+
+

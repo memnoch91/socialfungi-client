@@ -4,7 +4,7 @@ import {
     LIKE_SPORE,
     UNLIKE_SPORE,
     DELETE_SPORE,
-    // POST_SPORE,
+    POST_SPORE,
     SET_SPORE,
     // SUBMIT_COMMENT
 } from '../types';
@@ -24,6 +24,11 @@ export default function (state = initialSate, action) {
                 ...state,
                 loading: true
             };
+        case POST_SPORE:
+            return {
+                ...state,
+                spores:[action.payload, ...state.spores]
+            }
         case SET_SPORES:
             return {
                 ...state,
@@ -49,12 +54,15 @@ export default function (state = initialSate, action) {
                 ...state
             }
         case DELETE_SPORE:
-            index = state.spores.findIndex(
-                spore => spore.sporeId = action.payload.sporeId
+            let newArray = [...state.spores]
+            index = newArray.findIndex(
+                spore => spore.sporeId === action.payload
             )
-            state.spores.splice(index, 1)
+            console.log(action.payload)
+            newArray.splice(index, 1)
             return {
                 ...state,
+                spores: newArray
             }
         default:
             return state;
