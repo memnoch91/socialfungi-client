@@ -1,8 +1,4 @@
 export default {
-    verticalSeparator: {
-        border: 'none',
-        margin: 4
-    },
     profileImage: {
         maxWidth: 200,
         height: 200,

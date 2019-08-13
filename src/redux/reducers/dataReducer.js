@@ -6,7 +6,7 @@ import {
     DELETE_SPORE,
     POST_SPORE,
     SET_SPORE,
-    // SUBMIT_COMMENT
+    POST_COMMENT
 } from '../types';
 
 const initialSate = {
@@ -29,6 +29,14 @@ export default function (state = initialSate, action) {
                 ...state,
                 spores:[action.payload, ...state.spores]
             }
+        case POST_COMMENT: 
+            return {
+                ...state,
+                spore: {
+                    ...state.spore,
+                    comments: [action.payload, ...state.spore.comments]
+                }
+            }
         case SET_SPORES:
             return {
                 ...state,
@@ -45,12 +53,17 @@ export default function (state = initialSate, action) {
             index = state.spores.findIndex(
                 spore => spore.sporeId === action.payload.sporeId
             );
+            let tempSpore = {...state.spore}
             state.spores[index] = action.payload;
-            if (state.spore.sporeId === action.payload.sporeId) {
-                state.spore = action.payload;
+            if (tempSpore.sporeId === action.payload.sporeId) {
+                tempSpore = action.payload;
             }
             return {
-                ...state
+                ...state,
+                spore: {
+                    ...tempSpore,
+                    comments: [...state.spore.comments]
+                }
             }
         case DELETE_SPORE:
             let newArray = [...state.spores]

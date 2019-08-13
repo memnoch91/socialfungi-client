@@ -33,7 +33,6 @@ export default function (state = initialSate, action) {
                 loading: true
             };
         case LIKE_SPORE: 
-            console.log(action.payload);
             return {
                 ...state,
                 likes: [
@@ -45,7 +44,6 @@ export default function (state = initialSate, action) {
                 ]
             };
         case UNLIKE_SPORE:
-            console.log(action.payload);
             return {
                 ...state,
                 likes: state.likes.filter(like => like.sporeId !== action.payload.sporeId)

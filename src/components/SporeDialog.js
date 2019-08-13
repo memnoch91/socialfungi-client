@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 //custom components
-import CustomButton from './util/CustomButton'
+import CustomButton from './util/CustomButton';
+import LikeButton from './LikeButton';
+import Comments from './Comments';
+import PostComment from './PostComment'
 
 //Redux
-import { connect } from 'react-redux'
-import { getSpore, clearErrors } from '../redux/actions/dataActions'
+import { connect } from 'react-redux';
+import { getSpore, clearErrors } from '../redux/actions/dataActions';
 
 //MUI Components
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -18,11 +21,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import UnfoldMore from '@material-ui/icons/UnfoldMore';
+import ChatIcon from '@material-ui/icons/Chat';
 import CloseIcon from '@material-ui/icons/Close';
 
-
 //custom styles
-import customTheme from '../styles/theme'
+import customTheme from '../styles/theme';
 
 
 export class SporeDialog extends Component {
@@ -41,9 +44,6 @@ export class SporeDialog extends Component {
         // newPath: ''
     }
 
-    // componentDidMount() {
-    //     if (this.props.openDialong)
-    // }
 
     handleOpen = () => {
         this.setState({ isOpen: true });
@@ -53,7 +53,6 @@ export class SporeDialog extends Component {
     handleClose = () => {
         this.setState({ isOpen: false })
     }
-
 
     render() {
         const { classes } = this.props;
@@ -65,9 +64,10 @@ export class SporeDialog extends Component {
             userHandle,
             sporeId,
             likeCount,
-            commentCount
-
+            commentCount,
         } = this.props.spore
+
+        let { comments } = this.props.spore || [];
 
         const sporeDeatailsMarkup = loading ?
             (
@@ -98,7 +98,16 @@ export class SporeDialog extends Component {
                         <Typography variant='body1'>
                             {body}
                         </Typography>
+                        <LikeButton sporeId={sporeId} />
+                        <span>{likeCount} likes</span>
+                        <CustomButton toolTipTitle='comments'>
+                            <ChatIcon color='primary' />
+                        </CustomButton>
+                        <span>{commentCount}</span>
                     </Grid>
+                    <hr className={classes.horizontalSeparator} />
+                    <PostComment sporeId={sporeId} />
+                    <Comments comments={comments} />
                 </Grid>
 
             );
