@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types'
 
+//custo components
 import CustomButton from './util/CustomButton';
+import PostSpore from './PostSpore';
 
 //Redux
 import { connect } from 'react-redux'
@@ -12,10 +14,8 @@ import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
-//Icons
-import AddIcon from '@material-ui/icons/Add'
-import HomeIcon from '@material-ui/icons/Home'
-import NotificationsIcon from '@material-ui/icons/Notifications'
+import HomeIcon from '@material-ui/icons/Home';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 
 export class Navbar extends Component {
     static propTypes = {
@@ -29,9 +29,7 @@ export class Navbar extends Component {
         const navType = authenticated ?
             (
                 <Fragment>
-                    <CustomButton toolTipTitle='Post a spore!'>
-                        <AddIcon color='secondary' />
-                    </CustomButton>
+                   <PostSpore />
                     <Link to='/'>
                         <CustomButton toolTipTitle='Home'>
                             <HomeIcon color='secondary' />
