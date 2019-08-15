@@ -30,6 +30,9 @@ const sfTheme = createMuiTheme(theme);
 
 const token = localStorage['FBIdToken'];
 
+axios.defaults.baseURL =
+  'https://us-central1-socialfungi.cloudfunctions.net/api/';
+
 if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
