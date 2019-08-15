@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid/Grid'
 //Local Components
 import Spore from '../components/Spore';
 import Profile from '../components/Profile';
+import LoadingSpore from '../components/util/LoadingSpore'
 
 export class Home extends Component {
     componentDidMount() {
@@ -17,7 +18,7 @@ export class Home extends Component {
 
     render() {
         const { spores, loading } = this.props.data
-        const sopresMarkup = !loading ? spores.map( spore =>  <Spore key={spore.sporeId} spore={spore} />) :  (<p>loading...</p>)
+        const sopresMarkup = !loading ? spores.map(spore => <Spore key={spore.sporeId} spore={spore} />) : (<LoadingSpore />)
             
         return (
             <Grid container spacing={10}>

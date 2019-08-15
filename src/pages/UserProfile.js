@@ -7,7 +7,9 @@ import { getUserProfileDetails } from '../redux/actions/dataActions';
 
 //custom components
 import StaticProfileDisplay from '../components/StaticProfileDisplay';
-import Spore from '../components/Spore'
+import Spore from '../components/Spore';
+import LoadingProfile from '../components/util/LoadingProfile';
+import LoadingSpore from '../components/util/LoadingSpore'
 
 //MUI
 import Grid from '@material-ui/core/Grid';
@@ -45,7 +47,7 @@ export class UserProfile extends Component {
         const { sporeIdParam } = this.state;
         const sporesMarkup = loading ?
             (
-                <p>...loading data</p>
+                <LoadingSpore />
             ) :
             spores ?
 
@@ -75,7 +77,7 @@ export class UserProfile extends Component {
                 </Grid>
                 <Grid item sm={4} xs={12}>
                     {this.state.profile === null ? (
-                        <p>loading...</p>
+                        <LoadingProfile />
                     ) : (
                             <StaticProfileDisplay profile={this.state.profile} />
                         )}

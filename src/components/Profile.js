@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 
 //Custom components
 import EditDetails from './EditDetails';
+import LoadingProfile from './util/LoadingProfile';
 
 //MUI
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -139,7 +140,7 @@ class Profile extends Component {
             </Paper>
         )
 
-        let profileMarkup = !loading ? (authenticated ? (authProfileComponent()) : (noProfileFound())) : (<p>...loading</p>);
+        let profileMarkup = !loading ? (authenticated ? (authProfileComponent()) : (noProfileFound())) : (<LoadingProfile />);
 
         return (
             <Fragment>
