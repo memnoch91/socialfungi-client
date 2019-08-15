@@ -35,22 +35,40 @@ export class SporeDialog extends Component {
         getSpore: propTypes.func.isRequired,
         clearErrors: propTypes.func.isRequired,
         ui: propTypes.object.isRequired,
-        spore: propTypes.object.isRequired
+        spore: propTypes.object.isRequired,
+        openDialog: propTypes.bool
     }
 
     state = {
         isOpen: false,
-        // oldPath: '',
-        // newPath: ''
+        oldPath: '',
+        newPath: ''
     }
 
+    componentDidMount() {
+        if(this.props.openDialog) {
+            this.handleOpen();
+            console.log('am ajuns aici')
+        }
+    }
 
     handleOpen = () => {
-        this.setState({ isOpen: true });
+        let oldPath = window.location.pathname;
+
+        const { userHandle, sporeId } = this.props;
+        const newPath = `/users/${userHandle}/spore/${sporeId}`;
+
+        window.history.pushState(null, null, newPath);
+
+        //edge case whne the spore path is pasted in the browsers:
+        if(oldPath === newPath) { oldPath = `/users/${userHandle}`};
+
+        this.setState({ isOpen: true, oldPath, newPath });
         this.props.getSpore(this.props.sporeId);
     }
 
     handleClose = () => {
+        window.history.pushState(null, null, this.state.oldPath);
         this.setState({ isOpen: false })
     }
 

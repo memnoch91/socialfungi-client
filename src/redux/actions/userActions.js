@@ -1,6 +1,11 @@
 import axios from 'axios';
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, LOADING_USER } from '../types';
+import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, LOADING_USER, MARK_NOTIFICATIONS_READ } from '../types';
 
+const setAuthorizationHeader = (token) => {
+    const FBIdToken = `Bearer ${token}`;
+    localStorage.setItem('FBIdToken', FBIdToken);
+    axios.defaults.headers.common['Authorization'] = FBIdToken;
+};
 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
@@ -19,7 +24,7 @@ export const loginUser = (userData, history) => (dispatch) => {
                 payload: err.response.data
             })
         })
-}
+};
 export const signupUser = (newUserData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     axios
@@ -37,7 +42,7 @@ export const signupUser = (newUserData, history) => (dispatch) => {
                 payload: err.response.data
             })
         })
-}
+};
 
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('FBIdToken');
@@ -55,7 +60,7 @@ export const getUserData = () => (dispatch) => {
             });
         })
         .catch(err => console.error(err));
-}
+};
 
 export const uploadImage = (formData) => (dispatch) => {
     dispatch({ type: LOADING_USER });
@@ -65,7 +70,7 @@ export const uploadImage = (formData) => (dispatch) => {
             dispatch(getUserData());
         })
         .catch(err =>  console.error(err));
-}
+};
 
 export const editUserDetails = (userDetails) => (dispatch) => {
     dispatch({type: LOADING_USER});
@@ -75,10 +80,16 @@ export const editUserDetails = (userDetails) => (dispatch) => {
             dispatch(getUserData());
         })
         .catch(err => console.error(err));
-}
+};
 
-const setAuthorizationHeader = (token) => {
-    const FBIdToken = `Bearer ${token}`;
-    localStorage.setItem('FBIdToken', FBIdToken);
-    axios.defaults.headers.common['Authorization'] = FBIdToken;
+export const markNotificationsAsRead = (notificationIds) =>  (dispatch) => {
+    axios
+        .post('/notifications', notificationIds)
+        .then(() => {
+            dispatch({
+                type: MARK_NOTIFICATIONS_READ
+            });
+        })
+        .catch(err => console.error(err));
+
 };

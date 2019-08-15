@@ -60,10 +60,6 @@ export default function (state = initialSate, action) {
             }
             return {
                 ...state,
-                spore: {
-                    ...tempSpore,
-                    comments: [...state.spore.comments]
-                }
             }
         case DELETE_SPORE:
             let newArray = [...state.spores]

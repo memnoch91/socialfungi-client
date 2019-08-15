@@ -17,10 +17,15 @@ export class UserProfile extends Component {
 
     state = {
         profile: {},
+        sporeIdParam: ''
     }
 
     componentDidMount() {
         const handle = this.props.match.params.handle;
+        const sporeId = this.props.match.params.sporeId;
+        if (sporeId) {
+            this.setState({ sporeIdParam: sporeId })
+        };
 
         this.props.getUserProfileDetails(handle);
         axios
@@ -37,14 +42,28 @@ export class UserProfile extends Component {
     render() {
         const { spores } = this.props.data;
         const { loading } = this.props.data;
+        const { sporeIdParam } = this.state;
         const sporesMarkup = loading ?
             (
                 <p>...loading data</p>
             ) :
             spores ?
-                (
-                    spores.map(spore => <Spore key={spore.sporeId} spore={spore} />)
-                )
+
+                !sporeIdParam ?
+                    (
+                        spores.map(spore => <Spore key={spore.sporeId} spore={spore} />)
+                    )
+                    :
+                    (
+                        spores.map(spore => {
+                            if (spore.sporeId !== sporeIdParam) {
+                                return <Spore key={spore.sporeId} spore={spore} />;
+                            }
+                            else {
+                                return <Spore key={spore.sporeId} spore={spore} openDialog />;
+                            }
+                        })
+                    )
                 :
                 (
                     <p>This user has not spread his spores yet</p>

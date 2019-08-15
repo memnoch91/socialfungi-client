@@ -89,6 +89,7 @@ function Spore(props) {
                 <SporeDialog
                     sporeId={sporeId}
                     userHandle={userHandle}
+                    openDialog={props.openDialog}
                 />
             </CardContent>
         </Card>

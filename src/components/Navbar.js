@@ -5,6 +5,8 @@ import propTypes from 'prop-types'
 //custo components
 import CustomButton from './util/CustomButton';
 import PostSpore from './PostSpore';
+import NotificationIcon from './NotificationIcon';
+
 
 //Redux
 import { connect } from 'react-redux'
@@ -15,7 +17,6 @@ import ToolBar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 import HomeIcon from '@material-ui/icons/Home';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 
 export class Navbar extends Component {
     static propTypes = {
@@ -35,9 +36,7 @@ export class Navbar extends Component {
                             <HomeIcon color='secondary' />
                         </CustomButton>
                     </Link>
-                    <CustomButton toolTipTitle='Notifications'>
-                        <NotificationsIcon color='secondary' />
-                    </CustomButton>
+                    <NotificationIcon />
                 </Fragment>
             )
             :
