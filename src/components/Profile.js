@@ -27,7 +27,7 @@ import KeyboardReturn from '@material-ui/icons/KeyboardReturn'
 import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
 
-const styles = profileStyleObject;
+const styles = {...profileStyleObject};
 
 class Profile extends Component {
     constructor(props) {
@@ -108,7 +108,7 @@ class Profile extends Component {
                             </Fragment>
                         )}
                         <CalendarToday color='primary' /> {' '}
-                        <span>Joined {dayjs(createdAt).format('MMM YYY')}</span>
+                        <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
                     </div>
                     <hr />
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>

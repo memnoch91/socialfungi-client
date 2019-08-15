@@ -130,4 +130,22 @@ export const postComment = (sporeId, commentData) => (dispatch) => {
         });
 };
 
+export const getUserProfileDetails = (handle) => (dispatch) => {
+    dispatch({type: LOADING_DATA});
+    axios
+        .get(`/user/${handle}`)
+        .then(res => {
+            dispatch({
+                type: SET_SPORES,
+                payload: res.data.spores
+            });
+        })
+        .catch(() => {
+            dispatch({
+                type: SET_SPORES,
+                payload: []
+            });
+        })
+}
+
 

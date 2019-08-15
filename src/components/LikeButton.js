@@ -63,9 +63,9 @@ const mapStateToProps = (state) => ({
     user: state.user
 })
 
-const mapDispatchToProps = {
+const mapActionsToProps = {
     likeSpore,
     unlikeSpore
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LikeButton)
+export default connect(mapStateToProps, mapActionsToProps)(LikeButton)

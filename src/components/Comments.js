@@ -2,14 +2,16 @@ import React, { Component, Fragment } from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import theme from '../styles/theme'
+
 
 // MUI
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const styles = (theme) => ({
-    ...theme.spreadThis,
+const styles = {
+    ...theme,
     commentImage: {
         maxWidth: '100%',
         height: 100,
@@ -19,7 +21,7 @@ const styles = (theme) => ({
     commentData: {
         marginLeft: 20
     }
-})
+}
 
 class Comments extends Component {
 
@@ -47,7 +49,7 @@ class Comments extends Component {
                                             <Typography
                                                 variant='h6'
                                                 component={Link}
-                                                to={`/user/${userHandle}`}
+                                                to={`/users/${userHandle}`}
                                                 color='secondary'
                                             >
                                                 @{userHandle}
@@ -55,14 +57,14 @@ class Comments extends Component {
                                             <Typography variant='body2' color='textSecondary'>
                                                 {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                             </Typography>
-                                            <hr className={classes.verticalSeparator} />
+                                            <hr className={classes.invSeparator} />
                                             <Typography variabnt="body1">{body}</Typography>
                                         </div>
                                     </Grid>
                                 </Grid>
                             </Grid>
                             {index !== comments.length - 1 && (
-                                <hr className={classes.horizontalSeparator} />
+                                <hr className={classes.graySeparator} />
                             )}
                         </Fragment>
                     )

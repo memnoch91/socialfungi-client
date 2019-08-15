@@ -64,7 +64,6 @@ export const uploadImage = (formData) => (dispatch) => {
         .then( () => {
             dispatch(getUserData());
         })
-        .then(err => console.log(err))
         .catch(err =>  console.error(err));
 }
 

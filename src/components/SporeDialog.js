@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import CustomButton from './util/CustomButton';
 import LikeButton from './LikeButton';
 import Comments from './Comments';
-import PostComment from './PostComment'
+import PostComment from './PostComment';
 
 //Redux
 import { connect } from 'react-redux';
@@ -90,11 +90,11 @@ export class SporeDialog extends Component {
                         >
                             @{userHandle}
                         </Typography>
-                        <hr className={classes.verticalSeparator} />
+                        <hr className={classes.invSeparator} />
                         <Typography variant='body2' color='textSecondary'>
                             {dayjs(createdAt).format('h:mm a, DD MMMM YYYY')}
                         </Typography>
-                        <hr className={classes.verticalSeparator} />
+                        <hr className={classes.invSeparator} />
                         <Typography variant='body1'>
                             {body}
                         </Typography>
@@ -105,7 +105,7 @@ export class SporeDialog extends Component {
                         </CustomButton>
                         <span>{commentCount}</span>
                     </Grid>
-                    <hr className={classes.horizontalSeparator} />
+                    <hr className={classes.graySeparator} />
                     <PostComment sporeId={sporeId} />
                     <Comments comments={comments} />
                 </Grid>

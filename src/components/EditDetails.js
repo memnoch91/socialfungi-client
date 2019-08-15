@@ -10,7 +10,7 @@ import { editUserDetails } from '../redux/actions/userActions'
 
 //MUI
 import withStyles from '@material-ui/core/styles/withStyles';
-import predefinedStyles from '../styles/theme'
+import theme from '../styles/theme'
 //MUI Components
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -23,7 +23,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Edit';
 
 
-const styles = predefinedStyles;
+const styles = {...theme};
 
 export class EditDetails extends Component {
     static propTypes = {

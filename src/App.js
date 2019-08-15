@@ -15,6 +15,7 @@ import AuthRoute from './components/util/AuthRoute'
 import Home from './pages/Home'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
+import UserProfile from './pages/UserProfile'
 import Navbar from './components/Navbar'
 
 //MUI &Styles
@@ -54,6 +55,7 @@ function App() {
               <Route exact path="/" component={Home}></Route>
               <AuthRoute path="/signup" component={Signup}  />
               <AuthRoute path="/login" component={Login}  />
+              <Route exact path="/users/:handle" component={UserProfile}></Route>
             </Switch>
           </div>
         </Router>

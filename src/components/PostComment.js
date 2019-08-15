@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
+import theme from '../styles/theme'
+
 //REDUX
 import { connect } from 'react-redux';
 import { postComment } from '../redux/actions/dataActions'
@@ -11,9 +13,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-const styles = (theme) => ({
-    ...theme.spreadThis,
-})
+const styles = {...theme};
 
 export class PostComment extends Component {
     static propTypes = {
@@ -48,10 +48,10 @@ export class PostComment extends Component {
     }
 
     render() {
-        const { classes, authenticatd } = this.props;
+        const { classes, authenticated } = this.props;
         const { errors } = this.state;
-
-        const commentSporeMarkup = authenticatd ?
+        
+        const commentSporeMarkup = authenticated ?
             (<Grid item sm={12} style={{ textAlign: 'center' }}>
                 <form onSubmit={this.handleSubmit}>
                     <TextField
@@ -74,7 +74,7 @@ export class PostComment extends Component {
                         Submit
                     </Button>
                 </form>
-                <hr className={classes.horizontalSeparator} />
+                <hr className={classes.graySeparator} />
             </Grid>)
             :
             null;

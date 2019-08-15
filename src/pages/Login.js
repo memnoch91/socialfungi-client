@@ -21,7 +21,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions'
 
-const styles = loginAndSignupStyles;
+const styles = {...loginAndSignupStyles};
 export class Login extends Component {
 
     constructor(props) {
