@@ -1,5 +1,5 @@
 import React from 'react';
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
@@ -34,9 +34,10 @@ axios.defaults.baseURL =
   'https://us-central1-socialfungi.cloudfunctions.net/api/';
 
 if (token) {
+  console.log('token from localStorage', token);
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
-    store.dispatch(logoutUser())
+    store.dispatch(logoutUser());
     window.location.href = '/login';
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
@@ -65,7 +66,6 @@ function App() {
             </Switch>
           </div>
         </Router>
-
       </MuiThemeProvider>
     </Provider>
   );

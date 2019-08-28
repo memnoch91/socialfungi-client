@@ -15,9 +15,6 @@ import CalendarToday from '@material-ui/icons/CalendarToday';
 
 const LoadingProfile = ({ classes }) => {
 
-    console.log(classes);
-    
-
     return (
         <Paper>
             <div className={classes.profile} >
